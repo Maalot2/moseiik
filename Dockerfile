@@ -12,9 +12,6 @@ ADD . /app/moseiik
 COPY . /app/moseiik
 
 WORKDIR /app/
-RUN wget "https://filesender.renater.fr/download.php?token=178558c6-7155-4dca-9ecf-76cbebeb422e&files_ids=33679270" -O images.zip
-
-RUN unzip /app/images.zip -d /app/moseiik/assets/
 
 WORKDIR /app/moseiik
 
