@@ -13,14 +13,14 @@ jobs:
   build:
     strategy:
       matrix:
-        architecture: [x86, ARM64]
+        architecture: [x86, aarch64]
         
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Set up QEMU (for ARM emulation on x86)
-      if: matrix.architecture == 'ARM64'
+      if: matrix.architecture == 'aarch64'
       run: |
         sudo apt-get update
         sudo apt-get install -y qemu-user-static
@@ -39,7 +39,7 @@ jobs:
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     - name: Run Docker image and execute tests
       run: |
-        if [ "${{ matrix.architecture }}" == 'ARM64' ]; then
+        if [ "${{ matrix.architecture }}" == 'aarch64' ]; then
           docker run --platform linux/arm64 -t moseiik cargo test
         else
           docker run -t moseiik cargo test
