@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t my_docker_image --file Dockerfile .
+        docker build -t moseiik --file Dockerfile .
 
     - name: Run Docker image and execute tests
       run: |
