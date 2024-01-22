@@ -40,9 +40,9 @@ jobs:
     - name: Run Docker image and execute tests
       run: |
         if [ "${{ matrix.architecture }}" == 'aarch64' ]; then
-          docker run --platform linux/arm64 -t moseiik cargo test
+          docker build --platform linux/arm64 -t moseiik cargo test
         else
-          docker run -t moseiik cargo test
+          docker build -t moseiik cargo test
         fi
 
     - name: Run Docker image and execute tests
