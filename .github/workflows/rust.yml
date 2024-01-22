@@ -43,4 +43,4 @@ jobs:
 
     - name: Run Docker image and execute tests
       run: |
-        docker run --rm my_docker_image
+        docker run moseiik
