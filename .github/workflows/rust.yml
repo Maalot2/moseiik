@@ -13,14 +13,14 @@ jobs:
   build:
     strategy:
       matrix:
-        architecture: [x86, aarch64]
+        architecture: [x86, ARM64]
         
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Set up QEMU (for ARM emulation on x86)
-      if: matrix.architecture == 'aarch64'
+      if: matrix.architecture == 'ARM64'
       run: |
         sudo apt-get update
         sudo apt-get install -y qemu-user-static
