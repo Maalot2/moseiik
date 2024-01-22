@@ -37,10 +37,14 @@ jobs:
         sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         sudo apt-get update
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    - name: Build Docker image
+    - name: Run Docker image and execute tests
       run: |
-        dockerfile_path="Dockerfile-${{ matrix.architecture }}"
-        docker build -t moseiik --file "${dockerfile_path}" .
+        if [ "${{ matrix.architecture }}" == 'aarch64' ]; then
+          docker run --platform linux/arm64 -t moseiik cargo test
+        else
+          docker run -t moseiik cargo test
+        fi
+
 
     - name: Run Docker image and execute tests
       run: |
